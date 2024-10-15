@@ -1,0 +1,32 @@
+<section class="px-8 h-full flex flex-col">
+  <a routerLink="/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-28">
+    <fa-icon [icon]="faReturn"></fa-icon>
+    Return
+  </a>
+  @defer (when userInfo){
+    <div class="h-full flex justify-center items-center">
+      <div class="justify-center flex items-center">
+        <img class="rounded-full text-center" width="400" height="400" [ngSrc]="userInfo.avatar_url" alt="avatar" priority>
+        <div class="ml-14">
+          @if (userInfo.blog.length) {
+            <a class="text-4xl underline text-blue-500" [href]="userInfo.blog" target="_blank">{{ userInfo.name }}</a>
+          } @else {
+            <h2 class="text-4xl text-blue-500">{{ userInfo.name }}</h2>
+          }
+          <p class="text-2xl mt-4 text-gray-500">Bio: <span class="text-gray-400">{{ userInfo.bio }}</span></p>
+          <p class="text-xl text-gray-500 mt-2">Company: <span class="text-gray-400">{{ userInfo.company }}</span></p>
+          <p class="text-xl text-gray-500 mt-2">Location: <span class="text-gray-400">{{ userInfo.location }}</span></p>
+          <div class="mt-8">
+        <span class="text-xs font-medium text-gray-500">Followers: <span
+          class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{{ userInfo.followers }}</span></span>
+            <span class="text-xs font-medium text-gray-500">Following: <span
+              class="bg-indigo-100 text-indigo-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300">{{ userInfo.following }}</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</section>
+
+
+

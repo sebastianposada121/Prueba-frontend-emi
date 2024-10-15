@@ -1,0 +1,34 @@
+<section class="box-border h-full flex flex-col min-h-0">
+
+
+  <app-followers-graph #followersChart></app-followers-graph>
+
+
+  <app-search id="search" [searchControl]="nameControl" (onSearch)="searchUsersByName()">
+    <div errors class="mt-2 ml-1">
+      @if (nameControl.getError('minlength')){
+        <label for="search" class="mb-2 text-sm font-medium text-red-900">The name must have at least 4 characters</label>
+      }
+      @if (nameControl.getError('pattern')){
+        <label for="search" class="mb-2 text-sm font-medium text-red-900">This search cannot be performed</label>
+      }
+    </div>
+  </app-search>
+
+  <section class="h-full flex flex-col min-h-0">
+    <div class="h-screen p-8 box-border">
+      <div class="grid grid-cols-auto-fill-100 gap-4">
+        @for (user of userResponse.items; track user.id) {
+          <app-user-card [user]="user"></app-user-card>
+        }
+      </div>
+    </div>
+    <div>
+      <app-pagination [pagination]="{
+      page: currentPage,
+      pageSize: userResponse.total_count,
+  }" (onPageChange)="changePage($event)"></app-pagination>
+    </div>
+  </section>
+
+</section>
